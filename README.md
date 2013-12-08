@@ -5,7 +5,7 @@ Fix is a lightweight library that deals with some core issues such as scope reso
 
 One of the problems with js is the following:
 
-```
+```javascript
 var t1 = new Object();
 var t2 = new Object();
 
