@@ -30,7 +30,7 @@ t1.test(); //outputs 123, when it should output 456
 ```
 
 Fix addresses this like this:
-```
+```javascript
 var t1 = new Fix.Object();
 var t2 = new Fix.Object();
 t1.prop1 = "123";
@@ -49,7 +49,7 @@ t1.test();		//outputs 456
 ```
 
 Fix also adds better event handling by adding per object event dispatching
-```
+```javascript
 //EventDispatcher
 var ev = new Fix.events.EventDispatcher();
 var ev2 = new Fix.events.EventDispatcher();
@@ -69,7 +69,7 @@ ev.removeListener(Fix.events.Event.EVENT, ev2.test, ev2);
 ```
 
 Also for system-wide and localized events
-```
+```javascript
 //EventCenter
 var ev = new Fix.events.EventCenter();
 
