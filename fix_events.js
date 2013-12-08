@@ -334,7 +334,8 @@ Fix.events.EventDispatcher = Fix.extend(Fix.Object, {
 		for(; i < len; i++)
 		{
 			var item = tmp[i];
-			var func = Fix.bind(item.scope, item.method);
+			//var func = Fix.bind(item.scope, item.method);
+			var func = item.method.bind(item.scope);
 			func(event);
 		}
 	},

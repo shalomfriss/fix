@@ -45,5 +45,39 @@ t2.addMethod(function test(test1, test2){
 
 t1.test();		//outputs 123
 t1.test = t2.test;
-t1.test();			//outputs 456
+t1.test();		//outputs 456
+```
+
+Fix also adds better event handling by adding per object event dispatching
+```
+//EventDispatcher
+var ev = new Fix.events.EventDispatcher();
+var ev2 = new Fix.events.EventDispatcher();
+
+ev2.test = function(event)
+{
+	log("Event caught!");
+	log(event);
+}
+
+ev.addListener(Fix.events.Event.EVENT, ev2.test, ev2);
+var evt = new Fix.events.Event();
+evt.data ="asdf";
+
+ev.dispatch(evt);
+ev.removeListener(Fix.events.Event.EVENT, ev2.test, ev2);
+```
+
+Also for system-wide and localized events
+```
+//EventCenter
+var ev = new Fix.events.EventCenter();
+
+//App-wide EventCenter
+Fix.events.EventCenter.addEventListener("callback_event", t1.callback, t1);
+Fix.events.EventCenter.dispatch("callback_event", this, "asdfasdf");
+
+//Localized EventCenter
+ev.addEventListener("callback_event", t1.callback, t1);
+ev.dispatch("callback_event", this, "asdfasdf");
 ```
