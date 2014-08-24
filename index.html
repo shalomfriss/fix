@@ -1,0 +1,82 @@
+<html>
+<head>
+<script src="appframework.min.js"></script>
+
+<script src="fix/fix_core.js"></script>
+<script src="fix/events/Event.js"></script>
+<script src="fix/events/EventCenter.js"></script>
+<script src="fix/events/EventDispatcher.js"></script>
+<script src="fix/events/EventTests.js"></script>
+
+<script src="fix/loading/ImageLoader.js"></script>
+
+
+
+</head>
+<body>
+	<img id="theImage" src="" />
+<script>
+this.log = console.log.bind(console);
+
+function handleProgress(evt)
+{
+	log("PROGRESS");
+	log(evt.data);
+}
+function handleComplete(evt)
+{
+	log("COMPLETE");
+	log(evt.target);
+	var im = evt.target;
+	$("#theImage").attr("src", im.getEncodedImageString());
+}
+window.onload = function()
+{
+	
+	var im = new Fix.loading.ImageLoader();
+	im.addListener(Fix.events.Event.PROGRESS, this.handleProgress, this);
+	im.addListener(Fix.events.Event.COMPLETE, this.handleComplete, this);
+	im.loadImage("img/bwwStartScreen.png");
+	//EventTests.run();
+	
+	
+	
+	/*
+	var c1 = new Class1();
+	var c2 = new Class2();
+	c1.test();
+	c2.test();
+	*/
+	/*
+	log("ready");
+	try
+	{
+		var ref = new ReferenceManager();
+	}
+	catch(err)
+	{
+		log(err);
+	}
+	
+
+	var ref = ReferenceManager.getInstance();
+	ref.addReference(this, ref);
+	log(ref.getReference(this));
+	
+	var obj1 = new Object();
+	Fix.createMethod(obj1, "test", function(){
+		log(this);
+	});
+	
+	var obj2 = new Object();
+	*/
+
+	//Fix.importFile('testlib.js');
+	
+	//var ml = ModuleLoader.getInstance();
+	//ml.loadModule("MenuModule");
+}
+
+</script>
+</body>
+</html>
