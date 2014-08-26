@@ -4,6 +4,7 @@
 Fix.loading.ImageLoader = function()
 {
 	this.init();
+	this._bindFunctions();
 }
 Fix.extend(Fix.loading.ImageLoader, Fix.events.EventDispatcher);
 
@@ -14,6 +15,10 @@ Fix.loading.ImageLoader.prototype.init = function()
 	this.imageURI = "";
 	this.progress = 0;
 	
+}
+
+Fix.loading.ImageLoader.prototype._bindFunctions = function()
+{
 	this.onLoadStart 			= Fix.bind(this, this.onLoadStart);
 	this.onProgress 			= Fix.bind(this, this.onProgress);
 	this.onLoad 				= Fix.bind(this, this.onLoad);
@@ -23,7 +28,6 @@ Fix.loading.ImageLoader.prototype.init = function()
 	this.getEncodedImageElement = Fix.bind(this, this.getEncodedImageElement);
 	this.base64Encode 			= Fix.bind(this, this.base64Encode);
 }
-
 
 Fix.loading.ImageLoader.prototype.loadImage = function(imageURI)
 {
@@ -40,6 +44,13 @@ Fix.loading.ImageLoader.prototype.loadImage = function(imageURI)
 Fix.loading.ImageLoader.prototype.onLoadStart = function(e)
 {
 	console.log("START LOAD");
+	var evt = new Fix.events.Event(Fix.events.Event.START);
+	this.dispatch(evt);
+}
+
+Fix.loading.ImageLoader.prototype.onLoad = function(e)
+{
+	console.log("LOAD");
 }
 
 Fix.loading.ImageLoader.prototype.onLoadEnd = function(e)

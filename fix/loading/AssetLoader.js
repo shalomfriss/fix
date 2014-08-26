@@ -2,7 +2,7 @@ Fix.loading.AssetLoader = function()
 {
 	this.init();
 }
-Fix.extend(Fix.loading.AssetLoader, Fix.events.EventDispatcher);\
+Fix.extend(Fix.loading.AssetLoader, Fix.events.EventDispatcher);
 
 Fix.loading.AssetLoader.prototype.init = function()
 {
@@ -14,7 +14,6 @@ Fix.loading.AssetLoader.prototype.init = function()
 	this.filesTotal = 0;
 	this.bytesLoaded = 0;
 	this.bytesTotal = 0;
-	
 }
 
 Fix.loading.AssetLoader.prototype.addFile = function(aFile)
